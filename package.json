@@ -1,0 +1,35 @@
+{
+    "name": "html-esbuild-plugin",
+    "displayName": "HTML esbuild plugin",
+    "version": "0.1.0",
+    "description": "HTML plugin for esbuild",
+    "author": "Andreas Arvidsson",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib/*"
+    ],
+    "homepage": "https://github.com/AndreasArvidsson/html-esbuild-plugin",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AndreasArvidsson/html-esbuild-plugin"
+    },
+    "bugs": {
+        "url": "https://github.com/AndreasArvidsson/html-esbuild-plugin/issues"
+    },
+    "scripts": {
+        "build": "tsc -p . && tsx esbuild.ts"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "^18.15.9",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "esbuild": "^0.17.13",
+        "eslint": "^8.36.0",
+        "prettier": "^2.8.7",
+        "tsx": "^3.12.6",
+        "typescript": "^5.0.2"
+    }
+}
