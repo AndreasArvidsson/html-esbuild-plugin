@@ -13,20 +13,29 @@ export default (options: Options): Plugin => {
         setup(build) {
             build.initialOptions.metafile = true;
             const outdir = path.resolve(build.initialOptions.outdir ?? "");
+            const source = path.resolve(options.template);
+            const destination = path.join(outdir, "index.html");
 
-            let template = fs.readFileSync(path.resolve(options.template), {
-                encoding: "utf8",
+            // Make sure changes to html files triggers watcher
+            build.onLoad({ filter: /\.[tj]sx?/ }, (args) => {
+                console.log(args);
+                return {
+                    watchFiles: [source],
+                };
             });
 
-            template = applyOptions(template, options);
+            build.onEnd(async (result) => {
+                let template = await fs.promises.readFile(source, {
+                    encoding: "utf8",
+                });
 
-            build.onEnd((result) => {
+                template = applyOptions(template, options);
+
                 if (result.metafile) {
                     template = applyOutputs(template, outdir, result.metafile);
                 }
 
-                const fullPath = path.join(outdir, "index.html");
-                fs.writeFileSync(fullPath, template);
+                await fs.promises.writeFile(destination, template);
             });
         },
     };
