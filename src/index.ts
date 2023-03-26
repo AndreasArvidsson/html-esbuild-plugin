@@ -63,7 +63,7 @@ function applyOutputs(
         .join("\n");
     const css = files
         .filter((f) => f.endsWith(".css"))
-        .map((f) => `<link rel="stylesheet" href="${f}">`)
+        .map((f) => `<link rel="stylesheet" href="${f}" />`)
         .join("\n");
 
     template = replace(template, "output.js", js);
