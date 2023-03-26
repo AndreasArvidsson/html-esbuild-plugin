@@ -18,7 +18,6 @@ export default (options: Options): Plugin => {
 
             // Make sure changes to html files triggers watcher
             build.onLoad({ filter: /\.[tj]sx?/ }, (args) => {
-                console.log(args);
                 return {
                     watchFiles: [source],
                 };
